@@ -1,0 +1,5 @@
+export const todosConstants = {
+  TODO_REQUEST: "TODO_REQUEST",
+  TODO_SUCCESS: "TODO_SUCCESS",
+  TODO_FAILURE: "TODO_FAILURE",
+};
