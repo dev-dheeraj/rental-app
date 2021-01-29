@@ -27,9 +27,12 @@ class Todos extends React.Component {
     );
   };
 
+  handleDeleteAllTodos = () => {
+    this.setState({ newTodo: [] });
+  };
+
   componentWillReceiveProps = (nextprops) => {
     console.log("-----", nextprops);
-
     if (nextprops && nextprops.newTodo) {
       var arr = [...this.state.newTodo];
       arr.push(nextprops.newTodo);
@@ -40,8 +43,13 @@ class Todos extends React.Component {
   };
 
   render() {
+    const mainDivStyle = {
+      position: "absolute",
+      left: "40vw",
+      top: "50vh",
+    };
     return (
-      <div>
+      <div style={mainDivStyle}>
         <input
           onChange={(e) => this.updateInput(e.target.value)}
           value={this.state.input}
@@ -50,6 +58,9 @@ class Todos extends React.Component {
           Add Todo
         </button>
         <ul>{this.addTodoList(this.state.newTodo)}</ul>
+        <button className="deleteAllTodos" onClick={this.handleDeleteAllTodos}>
+          Delete All Todo
+        </button>
       </div>
     );
   }
@@ -63,4 +74,4 @@ function mapStateToProps(state) {
 }
 
 const connectedAddTodo = connect(mapStateToProps)(Todos);
-export { connectedAddTodo as Todos }; // export default AddTodo;
+export { connectedAddTodo as Todos };
